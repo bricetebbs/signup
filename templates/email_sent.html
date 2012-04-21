@@ -1,0 +1,11 @@
+{% extends 'template_base.html' %}
+{%  block content  %}
+{% if new_user %}
+Thanks for signing up!
+{% else %}
+Accessing existing account.
+{%  endif %}
+Check your email at {{ email }} for a login token. <br />
+
+To go back to the login page click <a href="{% url signup_login %}"> here</a>.
+{% endblock %}
