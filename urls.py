@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
     url (
@@ -6,12 +6,12 @@ urlpatterns = patterns('',
         view =  'signup.views.signup_email',
         name = 'signup_email'
         ),
-   url (
+    url (
         regex = '^logout/$',
         view =  'signup.views.signup_logout',
         name = 'signup_logout'
         ),
-   url (
+    url (
         regex = r'^$',
         view =  'signup.views.signup_login',
         name = 'signup_login'
@@ -21,20 +21,19 @@ urlpatterns = patterns('',
         view =  'signup.views.signup_login',
         name = 'signup_login'
         ),
-      url (
+    url (
         regex = '^login/email/(?P<user_token>[-\w]+)/(?P<key_token>[-\w]+)/$',
         view =  'signup.views.signup_login_by_email',
         name = 'signup_login_by_email'
-        ),
-      url (
+    ),
+    url (
         regex = '^change_username/$',
         view =  'signup.views.signup_change_username_and_password',
         name = 'signup_change_username_and_password'
-        ),
-   url (
+    ),
+    url (
         regex = '^change_password/$',
         view =  'signup.views.signup_change_password',
         name = 'signup_change_password'
-        ),
-
-    )
+    ),
+)

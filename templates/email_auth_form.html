@@ -7,4 +7,5 @@ Hello, {{ user }}
     To login to your account:
 {% endif %}
 
+{# This will make the clickable link they need to login #}
 Click http://{{host}}{% url signup_login_by_email user_token key_token %}.
