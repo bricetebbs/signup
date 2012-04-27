@@ -1,12 +1,11 @@
-signup
-======
+## signup
+
 
 A Django App for doing email only signup.
 A layer on top of django auth which makes it easy to set up a system
 where people just use their email as the mail way to login as described [here](http://blog.headspin.com/?p=352)
 
-Setting it up
-=============
+## Setting it up
 
 In settings.py you probably want:
 
@@ -26,3 +25,7 @@ Note:
 * Your django server needs to be configured to be able send mail
 * You should edit the templates to your liking
 
+
+## License
+
+MIT , see the `LICENSE` file for details.
