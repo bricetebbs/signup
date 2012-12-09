@@ -17,7 +17,7 @@
   </div>
 </form>
 If you don't have a login or cannot remember your password you may access your account or create a new one by submitting an email address below.
-    <form action='{% url signup_email %}' method="POST">{% csrf_token %}
+    <form action='{% url 'signup_email' %}' method="POST">{% csrf_token %}
         {{ email_form }}
       <button name='email' value='Submit Email' type='submit'>Submit Email</button>
     </form>
