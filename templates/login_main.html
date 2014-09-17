@@ -12,14 +12,14 @@
     <input type="hidden" name="this_is_the_login_form" value="1" />
   </div>
   <div class="submit-row">
-      <button name='login' value='Log in' type='submit'>Log In</button>
+      <button  class="btn btn-primary" name='login' value='Log in' type='submit'>Log In</button>
 
   </div>
 </form>
 If you don't have a login or cannot remember your password you may access your account or create a new one by submitting an email address below.
     <form action='{% url 'signup_email' %}' method="POST">{% csrf_token %}
         {{ email_form }}
-      <button name='email' value='Submit Email' type='submit'>Submit Email</button>
+      <button class="btn btn-primary" name='email' value='Submit Email' type='submit'>Submit Email</button>
     </form>
 {%  endblock %}
 {%  block javascript %}
