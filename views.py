@@ -24,6 +24,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import authenticate
 
+from utils import get_login_tokens
 import logging
 
 logger = logging.getLogger('signup')
@@ -45,7 +46,6 @@ class SignupBackEnd(ModelBackend):
             return None
 
 
-
 class SignupEmailForm(forms.Form):
     """
     All we need to signup is an email address
@@ -57,15 +57,16 @@ def send_token_message(host, user, template, subject, new_user=False, extra_cont
     """
     Send an email to the the user with a new token
     """
-    token_generator = PasswordResetTokenGenerator()
+
+    tokens = get_login_tokens(user)
   
     t = loader.get_template(template)
     c = {
             'email': user.email,
             'host':  host,
-            'user_token': int_to_base36(user.id),
+            'user_token': tokens['user_token'],
             'user': user,
-            'key_token': token_generator.make_token(user),
+            'key_token': tokens['key_token'],
             'new_user' : new_user,
         }
 
