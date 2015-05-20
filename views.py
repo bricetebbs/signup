@@ -85,8 +85,10 @@ def send_email_auth_token(request, user, new_user=False):
     """
     Send a new token
     """
-    subject = _("New Login token for %s") % request.get_host()
-    return send_token_message(request.get_host(), user, 'email_auth_form.html',subject, new_user=new_user )
+    host = getattr(settings, 'SIGNUP_HOST', request.get_host())
+
+    subject = _("New Login token for %s") % host
+    return send_token_message(host, user, 'email_auth_form.html',subject, new_user=new_user )
 
 
 def signup_email(request):
@@ -174,7 +176,7 @@ class UserUpdateForm(UserCreationForm):
         if self.instance.username != self.instance.email: # then we have set if before
             raise forms.ValidationError(_("We have already set the username for this user before."))
 
-        return super(UserUpdateForm, self).clean_username()
+        return self.cleaned_data["username"]
 
 @login_required
 def signup_change_username_and_password(request):
