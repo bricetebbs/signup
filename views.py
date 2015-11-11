@@ -29,6 +29,7 @@ import logging
 
 logger = logging.getLogger('signup')
 
+
 class SignupBackEnd(ModelBackend):
     """
     Provide an authenticator for using the email signup.
@@ -80,7 +81,6 @@ def send_token_message(host, user, template, subject, new_user=False, extra_cont
     # {% url signup_login_by_email user_token key_token %}
     send_mail(subject, t.render(Context(c)), settings.EMAIL_HOST_USER, [user.email])
 
-
 def send_email_auth_token(request, user, new_user=False):
     """
     Send a new token
@@ -129,9 +129,10 @@ def signup_login(request):
     """
     if request.user.is_authenticated():
         return redirect(settings.LOGIN_REDIRECT_URL)
-    email_form = SignupEmailForm
+    email_form = SignupEmailForm()
     return login_view(request, template_name='login_main.html',
                     extra_context=dict(email_form=email_form))
+
 
 def signup_logout(request):
     """
@@ -152,8 +153,6 @@ def signup_login_by_email(request, user_token, key_token):
             return redirect(request.GET['next'])
         return redirect(settings.LOGIN_REDIRECT_URL)
     return HttpResponse('Sorry, Your login link has expired or is invalid. Please select a new one.')
-
-
 
 
 class UserUpdateForm(UserCreationForm):
